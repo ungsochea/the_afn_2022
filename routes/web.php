@@ -25,3 +25,8 @@ Route::get('/video/show',[App\Http\Controllers\Frontend\VideoController::class,'
 Route::get('/news',[App\Http\Controllers\Frontend\PostController::class,'index'])->name('post.index');
 Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'show'])->name('post.show');
 
+
+// Admin
+
+Route::get('/admin/dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard.index');
+
