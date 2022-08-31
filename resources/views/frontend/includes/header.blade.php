@@ -50,7 +50,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/"><span class="mr-15">
+                                    <a href="{{ route('post.index') }}"><span class="mr-15">
                                         <ion-icon name="megaphone-outline"></ion-icon></span>News
                                     </a>
                                 </li>
