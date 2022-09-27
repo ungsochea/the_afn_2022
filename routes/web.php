@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/',[App\Http\Controllers\Frontend\HomeController::class,'index']);
+Route::get('/',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('home');
 
 Route::get('/videos',[App\Http\Controllers\Frontend\VideoController::class,'index'])->name('video.index');
 Route::get('/video/show',[App\Http\Controllers\Frontend\VideoController::class,'show'])->name('video.show');
@@ -27,6 +27,22 @@ Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'sh
 
 
 // Admin
+Route::middleware('admin')->prefix('admin')->group(function(){
 
-Route::get('/admin/dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard.index');
+    Route::controller(App\Http\Controllers\Admin\DashboardController::class)->group(function(){
+        Route::get('dashboard', 'index')->name('admin.dashboard.index');
+    });
+    // Route::namespace('App\Http\Controllers\Admin')->group(function(){
+    //     Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard.index');
+    // });
+
+});
+// Route::group(['middleware'=>'admin','prefix'=>'admin'],function(){
+//     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard.index');
+// });
+
+
+// Login
+Route::get('login',[App\Http\Controllers\Admin\UserController::class,'loginForm'])->name('admin.login')->middleware('guest');
+Route::post('login',[App\Http\Controllers\Admin\UserController::class,'login'])->name('admin.login')->middleware('guest');
 
