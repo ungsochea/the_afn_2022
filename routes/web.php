@@ -27,15 +27,34 @@ Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'sh
 
 
 // Admin
-Route::middleware('admin')->prefix('admin')->group(function(){
+Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
 
     Route::controller(App\Http\Controllers\Admin\DashboardController::class)->group(function(){
-        Route::get('dashboard', 'index')->name('admin.dashboard.index');
+        Route::get('dashboard', 'index')->name('dashboard.index');
     });
     // Route::namespace('App\Http\Controllers\Admin')->group(function(){
     //     Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard.index');
     // });
 
+    // Category
+    Route::resource('category',App\Http\Controllers\Admin\CategoryController::class);
+    Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function(){
+        Route::get('category-get-ajax','getAjax');
+        Route::get('category-search','search');
+    });
+
+
+    // Tag
+    Route::resource('tag',App\Http\Controllers\Admin\TagController::class);
+    Route::controller(App\Http\Controllers\Admin\TagController::class)->group(function(){
+        Route::get('tag-get-ajax','getAjax');
+        Route::get('tag-search','search');
+    });
+
+    // Ajax
+    Route::controller(App\Http\Controllers\Admin\AjaxController::class)->group(function(){
+        Route::get('slug-generate','slugGenerate');
+    });
 });
 // Route::group(['middleware'=>'admin','prefix'=>'admin'],function(){
 //     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard.index');
