@@ -24,7 +24,7 @@
     <link rel="shortcut icon" href="/images/favicon.png" />
     @yield('css')
 </head>
-<body>
+<body class="sidebar-dark">
 	<div class="main-wrapper">
 
 		<!-- partial:../../partials/_sidebar.html -->

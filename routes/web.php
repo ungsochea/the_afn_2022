@@ -51,6 +51,9 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
         Route::get('tag-search','search');
     });
 
+    // Post
+    Route::resource('post',App\Http\Controllers\Admin\PostController::class);
+
     // Ajax
     Route::controller(App\Http\Controllers\Admin\AjaxController::class)->group(function(){
         Route::get('slug-generate','slugGenerate');
