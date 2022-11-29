@@ -57,7 +57,13 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
     // Ajax
     Route::controller(App\Http\Controllers\Admin\AjaxController::class)->group(function(){
         Route::get('slug-generate','slugGenerate');
+        Route::get('ajax-category-select2','getCategorySelect2');
+        Route::get('ajax-tag-select2','getTagSelect2');
     });
+
+    // Route::get('ajax-category-select2','Admin\AjaxController@getCategorySelect2');
+    // Route::get('ajax-venue-select2','Admin\AjaxController@getVenueSelect2');
+    // Route::get('ajax-tag-select2','Admin\AjaxController@getTagSelect2');
 });
 // Route::group(['middleware'=>'admin','prefix'=>'admin'],function(){
 //     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin.dashboard.index');
@@ -68,3 +74,7 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
 Route::get('login',[App\Http\Controllers\Admin\UserController::class,'loginForm'])->name('admin.login')->middleware('guest');
 Route::post('login',[App\Http\Controllers\Admin\UserController::class,'login'])->name('admin.login')->middleware('guest');
 
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
