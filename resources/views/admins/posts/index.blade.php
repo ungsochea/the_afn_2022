@@ -28,6 +28,11 @@
             background-color: #FFFFFF;
         }
     }
+    .table td img, .datepicker table td img{
+        width: auto;
+        height: 64px;
+        border-radius: 0%;
+    }
 </style>
 @endsection
 @section('content')
@@ -89,7 +94,7 @@
     <script>
        $(function(){
             $.ajax({
-                url: '/admin/category-get-ajax',
+                url: '/admin/post-get-ajax',
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {

@@ -126,7 +126,7 @@
                 <label id="tag_id-error" class="error text-danger tag_id" for="tag_id"></label>
             </div>
             <div class="mb-3">
-                <label for="image_thumbnail" class="form-label">Thumbnail Image <span class="text-danger">*</span></label>
+                <label for="thumbnail" class="form-label">Thumbnail<span class="text-danger">*</span></label>
                 <div class="form-group">
                     <div class="main-img-preview">
                         <img class="thumbnail img-preview" src=" {{ $post->id ? $post->thumbnail_m : '/images/post_thumbnail.png'}}" title="Preview Logo" width="150">
@@ -136,12 +136,12 @@
                         <div class="input-group-btn">
                             <div class="fileUpload btn btn-danger fake-shadow">
                                 <span><i class="glyphicon glyphicon-upload"></i> Choose file</span>
-                                <input id="logo-id" name="image_thumbnail" type="file" accept="image/*" class="attachment_upload">
+                                <input id="logo-id" name="thumbnail" type="file" accept="image/*" class="attachment_upload">
                             </div>
                         </div>
                     </div>
                 </div>
-                <label id="image_thumbnail-error" class="error text-danger image_thumbnail" for="image_thumbnail"></label>
+                <label id="thumbnail-error" class="error text-danger thumbnail" for="thumbnail"></label>
             </div>
           </div>
         </div>
@@ -256,8 +256,8 @@
                 formData.append('body',tinymce.get('content_body').getContent());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
-                if( $("input[name=image_thumbnail]")[0].files.length != 0 ){
-                    formData.append('image_thumbnail', $("input[name=image_thumbnail]")[0].files[0]);
+                if( $("input[name=thumbnail]")[0].files.length != 0 ){
+                    formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
                 }
                 $('#categories option:selected').each(function() {
                     formData.append("categories[]", this.value);
@@ -299,12 +299,12 @@
                             }
                         });
                         $('#btnSubmit').attr('disabled',false);
-                        $('#btnSubmit').html('<i class="fas fa-save"></i> Save');
+                        $('#btnSubmit').html('Update');
                     },
                     error: function (data) {
                         //console.log(data)
                         $('#btnSubmit').attr('disabled',false);
-                        $('#btnSubmit').html('<i class="fas fa-save"></i> Save');
+                        $('#btnSubmit').html('Update');
                         //$("input").addClass('is-invalid')
                         $.each(data.responseJSON.errors, function (key, item)
                         {
@@ -325,8 +325,8 @@
                 formData.append('body',tinymce.get('content_body').getContent());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
-                if( $("input[name=image_thumbnail]")[0].files.length != 0 ){
-                    formData.append('image_thumbnail', $("input[name=image_thumbnail]")[0].files[0]);
+                if( $("input[name=thumbnail]")[0].files.length != 0 ){
+                    formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
                 }
                 $('#categories option:selected').each(function() {
                     formData.append("categories[]", this.value);
@@ -347,7 +347,7 @@
                         $('#btnSubmit').html('Loading...');
                     },
                     success: function (data) {
-                        //console.log(data);
+                        console.log(data);
                         if(data.response){
                             var msg = data.response.message;
                         }else{
@@ -364,7 +364,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 //location.reload();
-                                window.location.replace('/admin/post/'+data.post.id+'/edit');
+                               // window.location.replace('/admin/post/'+data.post.id+'/edit');
                             }
                         });
                         $('#btnSubmit').attr('disabled',false);
