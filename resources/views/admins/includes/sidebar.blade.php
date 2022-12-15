@@ -30,12 +30,6 @@
                 <span class="link-title">Tag</span>
                 </a>
             </li>
-            {{-- <li class="nav-item {{ (request()->routeIs('admin.post.*')) ? 'active':'' }}">
-                <a href="{{ route('admin.post.index') }}" class="nav-link">
-                <i class="fa-solid fa-hashtag link-icon"></i>
-                <span class="link-title">Post</span>
-                </a>
-            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
                   <i class="link-icon" data-feather="book"></i>
@@ -45,10 +39,10 @@
                 <div class="collapse" id="emails">
                   <ul class="nav sub-menu">
                     <li class="nav-item">
-                        <a href="{{ route('admin.post.create') }}" class="nav-link {{ (request()->routeIs('admin.post.create')) ? 'active':'' }}">New Post</a>
+                        <a href="{{ route('admin.post.index') }}" class="nav-link {{ (request()->routeIs('admin.post.index')) ? 'active':'' }}">All Post</a>
                     </li>
                     <li class="nav-item">
-                      <a href="{{ route('admin.post.index') }}" class="nav-link {{ (request()->routeIs('admin.post.index')) ? 'active':'' }}">All Post</a>
+                        <a href="{{ route('admin.post.create') }}" class="nav-link {{ (request()->routeIs('admin.post.create')) ? 'active':'' }}">New Post</a>
                     </li>
                     <li class="nav-item">
                       <a href="/admin/post/delete" class="nav-link {{ (request()->is('/admin/post/delete')) ? 'active':'' }}">Deleted Post</a>

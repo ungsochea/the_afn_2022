@@ -54,6 +54,8 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
     // Post
     Route::controller(App\Http\Controllers\Admin\PostController::class)->group(function(){
         Route::get('post-get-ajax','getAjax');
+        Route::get('post-restore/{id}','restore');
+        Route::delete('post-delete/{id}','destroy_forever');
         Route::post('post/{post}','update');
         Route::get('post-search','search');
         Route::get('post/delete','delete');
