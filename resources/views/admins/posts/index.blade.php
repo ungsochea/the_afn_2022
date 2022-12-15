@@ -129,138 +129,7 @@
                 });
             });
         });
-        function create(){
-            $('#modalForm').modal('toggle');
-            $('h5.modal-title').html('Add');
-            $('button#btnSubmit').html('Add');
-            $.ajax({
-                url: "/admin/category/create",
-                type: "GET",
-                dataType: 'json',
-                success: function (data) {
-                    $("#form_data").empty().html(data.html);
-                    $("button#btnSubmit").attr("onclick",'store()')
-                    $('select#is_activated').select2({placeholder: "Select Status",dropdownParent: $('#modalForm')});
-                },
-                error: function (data) {
-                    console.log(data)
-                }
-            });
-        }
-        function store(){
-            $('input').removeClass('is-invalid');
-            $("label.error").html('');
-            $.ajax({
-                data: $('#dataForm').serialize(),
-                url: '/admin/category',
-                type: "POST",
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#btnSubmit').attr('disabled', 'disabled');
-                    $('#btnSubmit').html('Loading...');
-                },
-                success: function (data) {
 
-                    $("#btnSubmit").html('Add');
-                    $("#btnSubmit").removeAttr('disabled');
-                    $('tbody#result').prepend(data.html);
-                    $('#modalForm').modal('toggle');
-                    $('#no-data').remove();
-
-                    if(data.response){
-                        var msg = data.response.message;
-                    }else{
-                        var msg = "No message.";
-                    }
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: false,
-                    });
-                    Toast.fire({
-                        icon: 'success',
-                        title: msg,
-                    })
-                },
-                error: function (data) {
-                    $("#btnSubmit").html('Add');
-                    $("#btnSubmit").removeAttr('disabled');
-                    $.each(data.responseJSON.errors, function (key, item)
-                    {
-                        $("input[name="+key+"]").addClass('is-invalid')
-                        $("label."+key).html(item);
-                    });
-                }
-            });
-        }
-        function edit(id){
-            $('#modalForm').modal('toggle');
-            $('h5.modal-title').html('Update');
-            $('button#btnSubmit').html('Update');
-            $.ajax({
-                url: '/admin/category/'+id+'/edit',
-                type: "GET",
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#form_data').html('Loading...');
-                },
-                success: function (data) {
-                    $("#form_data").empty().html(data.html);
-                    $("button#btnSubmit").attr("onclick",'update('+id+')');
-                    $('select#is_activated').select2({placeholder: "Select Status",dropdownParent: $('#modalForm')});
-                },
-                error: function (data) {
-                    console.log(data)
-                }
-            });
-        }
-        function update(id){
-            $.ajax({
-                data: $('#dataForm').serialize(),
-                url: '/admin/category/'+id,
-                type: "PUT",
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#loginBtn').attr('disabled', 'disabled');
-                    $('#loginBtn').html('Loading...');
-                },
-                success: function (data) {
-                    $('tr#list'+id).replaceWith(data.html);
-                    $('#modalForm').modal('toggle');
-                    $("#btnSubmit").html('Update');
-                    $("#btnSubmit").removeAttr('disabled');
-
-
-                    if(data.response){
-                        var msg = data.response.message;
-                    }else{
-                        var msg = "No message.";
-                    }
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 2000,
-                        timerProgressBar: false,
-                    });
-                    Toast.fire({
-                        icon: 'success',
-                        title: msg,
-                    })
-                },
-                error: function (data) {
-                    $("#btnSubmit").html('Update');
-                    $("#btnSubmit").removeAttr('disabled');
-                    $.each(data.responseJSON.errors, function (key, item)
-                    {
-                        $("input[name="+key+"]").addClass('is-invalid')
-                        $("label."+key).html(item);
-                    });
-                }
-            });
-        }
         function destroy(id){
             Swal.fire({
                 title: 'Are you sure?',
@@ -274,11 +143,11 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type:'delete',
-                        url:'/admin/category/'+id,
+                        url:'/admin/post/'+id,
                         success:function(data){
                             $('tr#list'+id).replaceWith(data.html);
-                            if(data.category_count == 0){
-                                $('tbody#result').html(' <tr id="no-data"><td colspan="4"><div class="text-center text-danger">No data</div></td></tr>');
+                            if(data.post_count == 0){
+                                $('tbody#result').html(' <tr id="no-data"><td colspan="8"><div class="text-center text-danger">No data</div></td></tr>');
                             }
                             if(data.response){
                                 var msg = data.response.message;
@@ -289,7 +158,7 @@
                                 toast: true,
                                 position: 'top-end',
                                 showConfirmButton: false,
-                                timer: 2000,
+                                timer: 1000,
                                 timerProgressBar: false,
                             });
                             Toast.fire({
@@ -321,7 +190,7 @@
             var search = $("#search").val();
             $.ajax({
                 data: {search:search},
-                url: "/admin/category-search",
+                url: "/admin/post-search",
                 type: "get",
                 dataType: 'json',
                 success: function (data) {

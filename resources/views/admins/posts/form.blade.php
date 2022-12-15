@@ -110,18 +110,18 @@
             <div class="mb-3">
                 <label for="categories" class="form-label">Category <span class="text-danger">*</span></label>
                 <select class="form-select" id="categories" name="categories" multiple>
-                    {{-- @foreach ($post->categories as $category)
+                    @foreach ($post->categories as $category)
                     <option value="{{ $category->id }}" selected="selected">{{ $category->title }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
                 <label id="category_id-error" class="error text-danger category_id" for="category_id"></label>
             </div>
             <div class="mb-3">
                 <label for="tags" class="form-label">Tag <span class="text-danger">*</span></label>
                 <select class="form-select" id="tags" name="tags" multiple>
-                    {{-- @foreach ($post->tags as $tag)
+                    @foreach ($post->tags as $tag)
                     <option value="{{ $tag->id }}" selected="selected">{{ $tag->title }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
                 <label id="tag_id-error" class="error text-danger tag_id" for="tag_id"></label>
             </div>
@@ -284,20 +284,20 @@
                         }else{
                             var msg = "No message.";
                         }
-                        Swal.fire({
-                            text:  msg,
-                            icon: "success",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn btn-primary"
-                            }
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                //location.reload();
-                                window.location.replace('/admin/post/'+data.post.id+'/edit');
-                            }
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true,
                         });
+                        Toast.fire({
+                            icon: 'success',
+                            title: msg,
+                        }).then((result) => {
+                            window.location.replace('/admin/post/'+data.post.id+'/edit');
+                        });
+
                         $('#btnSubmit').attr('disabled',false);
                         $('#btnSubmit').html('Update');
                     },
@@ -353,19 +353,18 @@
                         }else{
                             var msg = "No message.";
                         }
-                        Swal.fire({
-                            text:  msg,
-                            icon: "success",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn btn-primary"
-                            }
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true,
+                        });
+                        Toast.fire({
+                            icon: 'success',
+                            title: msg,
                         }).then((result) => {
-                            if (result.isConfirmed) {
-                                //location.reload();
-                               // window.location.replace('/admin/post/'+data.post.id+'/edit');
-                            }
+                            window.location.replace('/admin/post/'+data.post.id+'/edit');
                         });
                         $('#btnSubmit').attr('disabled',false);
                         $('#btnSubmit').html('<i class="fas fa-save"></i> Save');

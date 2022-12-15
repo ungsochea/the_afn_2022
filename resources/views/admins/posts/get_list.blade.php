@@ -20,14 +20,14 @@
             </td>
             <td>{{ $post->title }}</td>
             <td>
-                {{-- @foreach ($post->categories as $category)
+                @foreach ($post->categories as $category)
                     <span class="badge bg-primary">{{ $category->title}}</span>
-                @endforeach --}}
+                @endforeach
             </td>
             <td>
-                {{-- @foreach ($post->tags as $tag)
+                @foreach ($post->tags as $tag)
                     <span class="badge bg-primary">{{ $tag->title}}</span>
-                @endforeach --}}
+                @endforeach
             </td>
             <td>{{ $post->published }}</td>
             <td>{{ $post->post_by }}</td>

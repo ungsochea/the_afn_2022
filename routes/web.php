@@ -52,11 +52,14 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
     });
 
     // Post
-    Route::resource('post',App\Http\Controllers\Admin\PostController::class);
     Route::controller(App\Http\Controllers\Admin\PostController::class)->group(function(){
         Route::get('post-get-ajax','getAjax');
         Route::post('post/{post}','update');
+        Route::get('post-search','search');
+        Route::get('post/delete','delete');
     });
+    Route::resource('post',App\Http\Controllers\Admin\PostController::class);
+
     // Ajax
     Route::controller(App\Http\Controllers\Admin\AjaxController::class)->group(function(){
         Route::get('slug-generate','slugGenerate');

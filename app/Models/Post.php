@@ -111,8 +111,14 @@ class Post extends Model
         }
     }
 
-     // Relationship
-     public function user(){
+    // Relationship
+    public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function categories(){
+        return $this->belongsToMany(Category::class,PostCategory::class);
+    }
+    public function tags(){
+        return $this->belongsToMany(Tag::class,PostTag::class);
     }
 }
