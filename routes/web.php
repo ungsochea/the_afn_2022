@@ -62,6 +62,17 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
     });
     Route::resource('post',App\Http\Controllers\Admin\PostController::class);
 
+    // Video
+    Route::controller(App\Http\Controllers\Admin\VideoController::class)->group(function(){
+        Route::get('video-get-ajax','getAjax');
+        // Route::get('post-restore/{id}','restore');
+        // Route::delete('post-delete/{id}','destroy_forever');
+        Route::post('video/{video}','update');
+        Route::get('video-search','search');
+        // Route::get('post/delete','delete');
+    });
+    Route::resource('video',App\Http\Controllers\Admin\VideoController::class);
+
     // Ajax
     Route::controller(App\Http\Controllers\Admin\AjaxController::class)->group(function(){
         Route::get('slug-generate','slugGenerate');

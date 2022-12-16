@@ -1,5 +1,5 @@
 @extends('admins.layouts.app')
-@section('main_title','Delete Post Management')
+@section('main_title','Video Management')
 @section('css')
 <link rel="stylesheet" href="/admins/vendors/select2/select2.min.css">
 <link rel="stylesheet" href="/admins/vendors/sweetalert2/sweetalert2.min.css">
@@ -38,16 +38,16 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
     <div>
-      <h4 class="mb-3 mb-md-0">Delete Post Management</h4>
+      <h4 class="mb-3 mb-md-0">Video Management</h4>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12 stretch-card">
       <div class="card">
         <div class="card-body">
-            {{-- <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+            <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
                 <div>
-                    <a href="{{ route('admin.post.create') }}" onclick="create()" class="btn btn-success">Add</a>
+                    <a href="{{ route('admin.video.create') }}" class="btn btn-success">Add</a>
                 </div>
                 <div class="d-flex align-items-center flex-wrap text-nowrap">
                     <div class="input-group">
@@ -55,7 +55,7 @@
                         <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
           <div id="get-list">
             <div class="text-center">
                 <div class="spinner-border text-light" role="status">
@@ -94,7 +94,7 @@
     <script>
        $(function(){
             $.ajax({
-                url: '/admin/post-get-ajax/?q=delete',
+                url: '/admin/video-get-ajax',
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {
@@ -105,7 +105,9 @@
                 }
             });
        })
-
+       function test(id){
+        alert(id)
+       }
         $(window).on('hashchange', function() {
             if (window.location.hash) {
                 var page = window.location.hash.replace('#', '');
@@ -133,7 +135,7 @@
         function destroy(id){
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You will delete it forever!",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -143,65 +145,8 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type:'delete',
-                        url:'/admin/post-delete/'+id,
+                        url:'/admin/video/'+id,
                         success:function(data){
-                            $('tr#list'+id).replaceWith(data.html);
-                            if(data.post_count == 0){
-                                $('tbody#result').html(' <tr id="no-data"><td colspan="8"><div class="text-center text-danger">No data</div></td></tr>');
-                            }
-                            if(data.response){
-                                var msg = data.response.message;
-                            }else{
-                                var msg = "No message.";
-                            }
-                            const Toast = Swal.mixin({
-                                toast: true,
-                                position: 'top-end',
-                                showConfirmButton: false,
-                                timer: 1000,
-                                timerProgressBar: false,
-                            });
-                            Toast.fire({
-                                icon: 'success',
-                                title: msg,
-                            })
-
-                        },
-                        error: function (data) {
-                            console.log(data.responseJSON)
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: data.responseJSON.message,
-                                showConfirmButton: false,
-                                timer: 1200,
-                                onClose:()=>{
-                                    //location.reload();
-                                    //$("#body_content").html('loading...').load(origin);
-                                }
-                            })
-                        }
-                    });
-                }
-            });
-        }
-        function restore(id){
-            Swal.fire({
-                title: 'Are you want to respore?',
-                text: "You will delete it forever!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type:'get',
-                        dataType: 'json',
-                        url:'/admin/post-restore/'+id,
-                        success:function(data){
-                            console.log(data)
                             $('tr#list'+id).replaceWith(data.html);
                             if(data.post_count == 0){
                                 $('tbody#result').html(' <tr id="no-data"><td colspan="8"><div class="text-center text-danger">No data</div></td></tr>');
@@ -247,7 +192,7 @@
             var search = $("#search").val();
             $.ajax({
                 data: {search:search},
-                url: "/admin/post-search",
+                url: "/admin/video-search",
                 type: "get",
                 dataType: 'json',
                 success: function (data) {

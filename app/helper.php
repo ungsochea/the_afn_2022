@@ -12,3 +12,10 @@ function PostStatus(){
         '1'    => 'Published',
     ];
 }
+function VideoType(){
+    return [
+        'yb'    => 'Youtube',
+        'fb'    => 'Facebook',
+        'in'    => 'Internal',
+    ];
+}

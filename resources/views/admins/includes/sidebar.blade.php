@@ -49,7 +49,27 @@
                     </li>
                   </ul>
                 </div>
-              </li>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#video" role="button" aria-expanded="false" aria-controls="video">
+                  <i class="link-icon" data-feather="book"></i>
+                  <span class="link-title">Video</span>
+                  <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="video">
+                  <ul class="nav sub-menu">
+                    <li class="nav-item">
+                        <a href="{{ route('admin.video.index') }}" class="nav-link {{ (request()->routeIs('admin.video.index')) ? 'active':'' }}">All Videos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.video.create') }}" class="nav-link {{ (request()->routeIs('admin.video.create')) ? 'active':'' }}">New Video</a>
+                    </li>
+                    {{-- <li class="nav-item">
+                      <a href="/admin/post/delete" class="nav-link {{ (request()->is('/admin/post/delete')) ? 'active':'' }}">Deleted Post</a>
+                    </li> --}}
+                  </ul>
+                </div>
+            </li>
         </ul>
     </div>
     </nav>
