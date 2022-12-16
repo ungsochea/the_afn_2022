@@ -105,7 +105,6 @@
                 }
             });
        })
-
         $(window).on('hashchange', function() {
             if (window.location.hash) {
                 var page = window.location.hash.replace('#', '');
@@ -187,8 +186,8 @@
         }
         function restore(id){
             Swal.fire({
-                title: 'Are you want to respore?',
-                text: "You will delete it forever!",
+                title: 'Are you want to restore?',
+                text: "It will move to all posts!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -242,22 +241,6 @@
                 }
             });
         }
-        $('#search').keyup(function(e){
-            e.preventDefault()
-            var search = $("#search").val();
-            $.ajax({
-                data: {search:search},
-                url: "/admin/post-search",
-                type: "get",
-                dataType: 'json',
-                success: function (data) {
-                    $("#get-list").empty().html(data.html);
-                },
-                error: function (data) {
-                   console.log(data);
-                }
-            });
-        });
         $("#modalForm").on("hidden.bs.modal", function () {
             $('#modalForm form')[0].reset();
         });

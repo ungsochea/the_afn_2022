@@ -65,11 +65,11 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
     // Video
     Route::controller(App\Http\Controllers\Admin\VideoController::class)->group(function(){
         Route::get('video-get-ajax','getAjax');
-        // Route::get('post-restore/{id}','restore');
-        // Route::delete('post-delete/{id}','destroy_forever');
+        Route::get('video-restore/{id}','restore');
+        Route::delete('video-delete/{id}','destroy_forever');
         Route::post('video/{video}','update');
         Route::get('video-search','search');
-        // Route::get('post/delete','delete');
+        Route::get('video/delete','delete')->name('video.index_delete');
     });
     Route::resource('video',App\Http\Controllers\Admin\VideoController::class);
 

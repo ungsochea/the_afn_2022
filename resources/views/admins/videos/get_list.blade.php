@@ -4,6 +4,7 @@
         <tr>
           <th class="pt-0" width="10%">Photo</th>
           <th class="pt-0">Title</th>
+          <th class="pt-0">Type</th>
           <th class="pt-0">Category</th>
           <th class="pt-0">Tag</th>
           <th class="pt-0" width="10%">Published</th>
@@ -19,15 +20,17 @@
                 <img src="{{ $video->thumbnail_xs }}" alt="photo">
             </td>
             <td>{{ $video->title }}</td>
+            <td>{{ data_get(VideoType(),$video->type) }}</td>
+
             <td>
-                {{-- @foreach ($video->categories as $category)
+                @foreach ($video->categories as $category)
                     <span class="badge bg-primary">{{ $category->title}}</span>
-                @endforeach --}}
+                @endforeach
             </td>
             <td>
-                {{-- @foreach ($video->tags as $tag)
+                @foreach ($video->tags as $tag)
                     <span class="badge bg-primary">{{ $tag->title}}</span>
-                @endforeach --}}
+                @endforeach
             </td>
             <td>{{ $video->published }}</td>
             <td>{{ $video->post_by }}</td>
@@ -40,7 +43,7 @@
           </tr>
           @empty
             <tr id="no-data">
-                <td colspan="8">
+                <td colspan="9">
                     <div class="text-center text-danger">
                         No data
                     </div>

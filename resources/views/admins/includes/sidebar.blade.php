@@ -30,7 +30,7 @@
                 <span class="link-title">Tag</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('admin.post.*') ? 'active':'' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
                   <i class="link-icon" data-feather="book"></i>
                   <span class="link-title">Post</span>
@@ -50,9 +50,9 @@
                   </ul>
                 </div>
             </li>
-            <li class="nav-item">
+            <li class="nav-item {{ request()->routeIs('admin.video.*') ? 'active':'' }}">
                 <a class="nav-link" data-bs-toggle="collapse" href="#video" role="button" aria-expanded="false" aria-controls="video">
-                  <i class="link-icon" data-feather="book"></i>
+                  <i class="link-icon" data-feather="video"></i>
                   <span class="link-title">Video</span>
                   <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
@@ -64,9 +64,9 @@
                     <li class="nav-item">
                         <a href="{{ route('admin.video.create') }}" class="nav-link {{ (request()->routeIs('admin.video.create')) ? 'active':'' }}">New Video</a>
                     </li>
-                    {{-- <li class="nav-item">
-                      <a href="/admin/post/delete" class="nav-link {{ (request()->is('/admin/post/delete')) ? 'active':'' }}">Deleted Post</a>
-                    </li> --}}
+                    <li class="nav-item">
+                      <a href="{{ route('admin.video.index_delete') }}" class="nav-link {{ request()->routeIs('admin.video.index_delete') ? 'active':'' }}">Deleted Post</a>
+                    </li>
                   </ul>
                 </div>
             </li>

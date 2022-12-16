@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Video;
+use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
@@ -29,6 +30,13 @@ class VideoController extends Controller
     }
     public function store(Request $request){
         if(!$request->ajax()) return abort(500);
+        $request->validate([
+            'title'         => 'required|min:3|max:255',
+            'description'   => 'required|min:3|max:255',
+            'is_activated'  => 'required',
+            'published_at'  => 'required',
+            'categories'    => 'required',
+        ]);
         $video = Video::create([
             'id'            => Video::generateUserid(),
             'user_id'       => auth()->user()->id,
@@ -48,6 +56,13 @@ class VideoController extends Controller
     }
     public function update(Request $request,Video $video){
         if(!$request->ajax()) return abort(500);
+        $request->validate([
+            'title'         => 'required|min:3|max:255',
+            'description'   => 'required|min:3|max:255',
+            'is_activated'  => 'required',
+            'published_at'  => 'required',
+            'categories'    => 'required',
+        ]);
         $video->update([
             'title'         => $request->title,
             'link'          => $request->link,
@@ -57,6 +72,8 @@ class VideoController extends Controller
             'is_activated'  => $request->is_activated,
             'published_at'  => $request->published_at,
         ]);
+        $video->categories()->sync($request->categories);
+        $video->tags()->sync($request->tags);
         $response['message'] = "Update successfully.";
         return response()->json(compact('response','video'));
     }
@@ -81,5 +98,50 @@ class VideoController extends Controller
         ->paginate('7');
         $html = view('admins.posts.get_list',compact('posts'))->render();
         return response()->json(compact('html'));
+    }
+    public function delete(){
+        return view('admins.videos.index_delete');
+    }
+    public function restore(Request $request,$id){
+        if(!$request->ajax()) return abort(500);
+        $video = Video::withTrashed()->find($id);
+        if($video->restore()){
+            $video_count = Video::onlyTrashed()->count();
+            $response['message'] = "Restore successfully.";
+            return response()->json(compact('response','video','video_count'),200);
+        }
+    }
+    public function destroy_forever(Request $request,$id){
+        $video = Video::onlyTrashed()->find($id);
+        if($video){
+            if($video->forceDelete()){
+
+                if($video->thumbnail){
+                    if(Storage::disk('do_spaces')->exists('videos/large/'.$video->thumbnail)){
+                        Storage::disk('do_spaces')->delete('videos/large/'.$video->thumbnail);
+                    }
+                    if(Storage::disk('do_spaces')->exists('videos/medium/'.$video->thumbnail)){
+                        Storage::disk('do_spaces')->delete('videos/medium/'.$video->thumbnail);
+                    }
+                    if(Storage::disk('do_spaces')->exists('videos/small/'.$video->thumbnail)){
+                        Storage::disk('do_spaces')->delete('videos/small/'.$video->thumbnail);
+                    }
+                    if(Storage::disk('do_spaces')->exists('videos/extra_small/'.$video->thumbnail)){
+                        Storage::disk('do_spaces')->delete('videos/extra_small/'.$video->thumbnail);
+                    }
+                }
+
+                $video_count = Video::onlyTrashed()->count();
+                $response['message'] = "Deleted successfully.";
+                return response()->json(compact('response','video','video_count'),200);
+            }else{
+                $response['message'] = "Opp, something wrong.";
+                return response()->json(compact('response'),500);
+            }
+        }else{
+            $response['message'] = "Opp, something wrong.";
+            return response()->json(compact('response'),500);
+        }
+
     }
 }

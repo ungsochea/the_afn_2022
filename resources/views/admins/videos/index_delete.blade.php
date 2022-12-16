@@ -1,5 +1,5 @@
 @extends('admins.layouts.app')
-@section('main_title','Delete Post Management')
+@section('main_title','Video Management')
 @section('css')
 <link rel="stylesheet" href="/admins/vendors/select2/select2.min.css">
 <link rel="stylesheet" href="/admins/vendors/sweetalert2/sweetalert2.min.css">
@@ -38,24 +38,13 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
     <div>
-      <h4 class="mb-3 mb-md-0">Delete Post Management</h4>
+      <h4 class="mb-3 mb-md-0">Video Management</h4>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12 stretch-card">
       <div class="card">
         <div class="card-body">
-            {{-- <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-                <div>
-                    <a href="{{ route('admin.post.create') }}" onclick="create()" class="btn btn-success">Add</a>
-                </div>
-                <div class="d-flex align-items-center flex-wrap text-nowrap">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" id="search" placeholder="Type search" aria-label="Input group example" aria-describedby="btnGroupAddon">
-                        <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-search"></i></div>
-                    </div>
-                </div>
-            </div> --}}
           <div id="get-list">
             <div class="text-center">
                 <div class="spinner-border text-light" role="status">
@@ -94,7 +83,7 @@
     <script>
        $(function(){
             $.ajax({
-                url: '/admin/post-get-ajax/?q=delete',
+                url: '/admin/video-get-ajax/?q=delete',
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {
@@ -105,7 +94,9 @@
                 }
             });
        })
-
+       function test(id){
+        alert(id)
+       }
         $(window).on('hashchange', function() {
             if (window.location.hash) {
                 var page = window.location.hash.replace('#', '');
@@ -130,6 +121,7 @@
             });
         });
 
+
         function destroy(id){
             Swal.fire({
                 title: 'Are you sure?',
@@ -143,11 +135,11 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type:'delete',
-                        url:'/admin/post-delete/'+id,
+                        url:'/admin/video-delete/'+id,
                         success:function(data){
                             $('tr#list'+id).replaceWith(data.html);
-                            if(data.post_count == 0){
-                                $('tbody#result').html(' <tr id="no-data"><td colspan="8"><div class="text-center text-danger">No data</div></td></tr>');
+                            if(data.video_count == 0){
+                                $('tbody#result').html(' <tr id="no-data"><td colspan="9"><div class="text-center text-danger">No data</div></td></tr>');
                             }
                             if(data.response){
                                 var msg = data.response.message;
@@ -187,24 +179,24 @@
         }
         function restore(id){
             Swal.fire({
-                title: 'Are you want to respore?',
-                text: "You will delete it forever!",
+                title: 'Are you want to restore?',
+                text: "It will move to all videos!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, restore it!'
               }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
                         type:'get',
                         dataType: 'json',
-                        url:'/admin/post-restore/'+id,
+                        url:'/admin/video-restore/'+id,
                         success:function(data){
                             console.log(data)
                             $('tr#list'+id).replaceWith(data.html);
-                            if(data.post_count == 0){
-                                $('tbody#result').html(' <tr id="no-data"><td colspan="8"><div class="text-center text-danger">No data</div></td></tr>');
+                            if(data.video_count == 0){
+                                $('tbody#result').html(' <tr id="no-data"><td colspan="9"><div class="text-center text-danger">No data</div></td></tr>');
                             }
                             if(data.response){
                                 var msg = data.response.message;
@@ -242,24 +234,5 @@
                 }
             });
         }
-        $('#search').keyup(function(e){
-            e.preventDefault()
-            var search = $("#search").val();
-            $.ajax({
-                data: {search:search},
-                url: "/admin/post-search",
-                type: "get",
-                dataType: 'json',
-                success: function (data) {
-                    $("#get-list").empty().html(data.html);
-                },
-                error: function (data) {
-                   console.log(data);
-                }
-            });
-        });
-        $("#modalForm").on("hidden.bs.modal", function () {
-            $('#modalForm form')[0].reset();
-        });
     </script>
 @endsection

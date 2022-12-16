@@ -148,8 +148,8 @@
                         url:'/admin/video/'+id,
                         success:function(data){
                             $('tr#list'+id).replaceWith(data.html);
-                            if(data.post_count == 0){
-                                $('tbody#result').html(' <tr id="no-data"><td colspan="8"><div class="text-center text-danger">No data</div></td></tr>');
+                            if(data.video_count == 0){
+                                $('tbody#result').html(' <tr id="no-data"><td colspan="9"><div class="text-center text-danger">No data</div></td></tr>');
                             }
                             if(data.response){
                                 var msg = data.response.message;

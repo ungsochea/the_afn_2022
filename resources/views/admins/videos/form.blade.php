@@ -114,18 +114,18 @@
             <div class="mb-3">
                 <label for="categories" class="form-label">Category <span class="text-danger">*</span></label>
                 <select class="form-select" id="categories" name="categories" multiple>
-                    {{-- @foreach ($video->categories as $category)
+                    @foreach ($video->categories as $category)
                     <option value="{{ $category->id }}" selected="selected">{{ $category->title }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
                 <label id="category_id-error" class="error text-danger category_id" for="category_id"></label>
             </div>
             <div class="mb-3">
                 <label for="tags" class="form-label">Tag <span class="text-danger">*</span></label>
                 <select class="form-select" id="tags" name="tags" multiple>
-                    {{-- @foreach ($video->tags as $tag)
+                    @foreach ($video->tags as $tag)
                     <option value="{{ $tag->id }}" selected="selected">{{ $tag->title }}</option>
-                    @endforeach --}}
+                    @endforeach
                 </select>
                 <label id="tag_id-error" class="error text-danger tag_id" for="tag_id"></label>
             </div>
