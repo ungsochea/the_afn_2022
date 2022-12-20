@@ -13,6 +13,17 @@
     <link rel="stylesheet" href="/assets/css/widgets.css">
     <link rel="stylesheet" href="/assets/css/color.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RNKSQ1Z57R"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RNKSQ1Z57R');
+    </script>
+
     @yield('css')
 </head>
 
