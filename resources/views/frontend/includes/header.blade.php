@@ -7,17 +7,17 @@
                 <div class="col-lg-2 col-md-3">
                     <div class="header-logo d-none d-lg-block">
                         <a href="/">
-                            <img class="logo-img d-inline" src="/images/logo.png" alt="" style="height: 38px">
+                            <img class="logo-img d-inline" src="/images/logo_beta.png" alt="" style="height: 38px">
                         </a>
                     </div>
                     <div class="logo-tablet d-md-inline d-lg-none d-none">
                         <a href="/">
-                            <img class="logo-img d-inline" src="/images/logo.png" alt=""  style="height: 38px">
+                            <img class="logo-img d-inline" src="/images/logo_beta.png" alt=""  style="height: 38px">
                         </a>
                     </div>
                     <div class="logo-mobile d-block d-md-none">
                         <a href="/">
-                            <img class="logo-img d-inline" src="/images/logo.png" alt="" style="width: 100px">
+                            <img class="logo-img d-inline" src="/images/logo_beta.png" alt="" style="width: 100px">
                         </a>
                     </div>
                 </div>

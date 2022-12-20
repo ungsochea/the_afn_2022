@@ -36,7 +36,7 @@
             <td>{{ $video->post_by }}</td>
             <td><div class="badge bg-{{ $video->status_color }}">{{ $video->status }}</td>
             <td>
-                <a href="{{ route('video.show',$video->id) }}" class="badge bg-success p-2" target="_blank"><i class="fas fa-eye fa-xs"></i></a>
+                <a href="/video?v={{ $video->id }}" class="badge bg-success p-2" target="_blank"><i class="fas fa-eye fa-xs"></i></a>
                 <a href="{{ route('admin.video.edit',$video->id) }}" class="badge bg-warning p-2"><i class="fas fa-edit fa-xs"></i></a>
                 <a href="javascript:;" class="badge bg-danger p-2 " onclick="destroy('{{ $video->id }}')"><i class="fas fa-trash fa-xs"></i></a>
             </td>

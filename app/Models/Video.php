@@ -134,4 +134,8 @@ class Video extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class,VideoTag::class);
     }
+    // Scope
+    public function scopeActive($q){
+        return $q->where('is_activated',true);
+    }
 }

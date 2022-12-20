@@ -85,7 +85,7 @@
     <div class="footer-bottom-area bg-white text-muted">
         <div class="container">
             <div class="footer-border pt-20 pb-20">
-                <div class="row d-flex mb-15">
+                {{-- <div class="row d-flex mb-15">
                     <div class="col-12">
                         <ul class="list-inline font-small">
                             <li class="list-inline-item"><a href="category.html">World</a></li>
@@ -109,7 +109,7 @@
                             <li class="list-inline-item"><a href="category.html">Video</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <div class="row d-flex align-items-center justify-content-between">
                     <div class="col-12">
                         <div class="footer-copy-right">

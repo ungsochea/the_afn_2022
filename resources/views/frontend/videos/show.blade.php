@@ -50,18 +50,15 @@
                     <li><a class="social-icon email-icon text-xs-center" target="_blank" href="#"><i class="ti-email"></i></a></li>
                 </ul>
             </div>  --}}
+            @if ($video->type == 'yb')
             <figure class="single-thumnail mb-30">
-                <iframe class="video" width="100%" height="100%" src="https://www.youtube.com/embed/oKDWYGTPf4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                {{--  <video autoplay="" loop="" muted="" poster="https://www.pexels.com/assets/videos/free-videos-7daa2ef41a140f70c757ce91913a4ecb90570b7d7cd2b401bae868350e02c83a.jpg">
-                    <source src="https://static.pexels.com/lib/videos/free-videos.mp4" type="video/mp4">
-                    <source src="https://static.pexels.com/lib/videos/free-videos.webm" type="video/webm">
-                </video>
-                <div class="credit mt-15 font-small color-grey">
-                    <i class="ti-credit-card mr-5"></i><span>Video credit: pexels.com</span>
-                </div>  --}}
+                <iframe class="video" width="100%" height="100%" src="{{ $video->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             </figure>
+
+            @endif
             <h3 class="post-title mb-30">
-                Laos 1-5 Indonesia (#AFFSuzukiCup2020 Group Stage)
+                {{ $video->title ?? '' }}
             </h3>
             <div class="entry-meta meta-1 font-x-small color-grey text-uppercase">
                 <span class="post-by">By <a href="author.html">Adam Liptak </a> &amp; <a href="author.html">Michael D. Shear</a></span>
@@ -75,18 +72,19 @@
             </div>
             <hr>
             <div class="entry-main-content">
-                <p>Laconic overheard dear woodchuck wow this outrageously taut beaver hey hello far meadowlark imitatively egregiously hugged that yikes minimally unanimous pouted flirtatiously as beaver beheld above forward energetic across this jeepers beneficently cockily less a the raucously that magic upheld far so the this where crud then below after jeez enchanting drunkenly more much wow callously irrespective limpet.</p>
+                <p>{!! $video->description !!}</p>
             </div>
 
             <div class="entry-bottom mt-50 mb-30">
                 <div class="overflow-hidden mt-30">
                     <div class="tags float-left text-muted mb-md-30">
                         <span class="font-small mr-10"><i class="fa fa-tag mr-5"></i>Tags: </span>
-                        <a href="category.html" rel="tag">tech</a>
-                        <a href="category.html" rel="tag">world</a>
-                        <a href="category.html" rel="tag">global</a>
+                        @foreach ($video->tags as $tag)
+                        <a href="/video?tag={{ $tag->slug }}" rel="tag">{{ $tag->title }}</a>
+                        @endforeach
+
                     </div>
-                    <div class="single-social-share float-right">
+                    {{-- <div class="single-social-share float-right">
                         <ul class="d-inline-block list-inline">
                             <li class="list-inline-item"><span class="font-small text-muted"><i class="ti-sharethis mr-5"></i>Share: </span></li>
                             <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
@@ -95,11 +93,11 @@
                             <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
                             <li class="list-inline-item"><a class="social-icon linkedin-icon text-xs-center" target="_blank" href="#"><i class="ti-linkedin"></i></a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <!--author box-->
-            <div class="author-bio border-radius-10 bg-white p-30 mb-40">
+            {{-- <div class="author-bio border-radius-10 bg-white p-30 mb-40">
                 <div class="author-image mb-30">
                     <a href="author.html"><img src="/assets/imgs/authors/author.png" alt="" class="avatar"></a></div>
                 <div class="author-info">
@@ -123,7 +121,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!--End col-lg-8-->
         <div class="col-lg-4 col-md-12 sidebar-right sticky-sidebar">
@@ -134,7 +132,8 @@
                     </div>
                     <div class="post-aside-style-2">
                         <ul class="list-post">
-                            @for ($i = 0; $i < 7; $i++)
+                            <p>no data</p>
+                            {{-- @for ($i = 0; $i < 7; $i++)
                             <li class="mb-30 wow fadeIn    animated" style="visibility: visible; animation-name: fadeIn;">
                                 <div class="d-flex">
                                     <div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
@@ -151,7 +150,7 @@
                                     </div>
                                 </div>
                             </li>
-                            @endfor
+                            @endfor --}}
 
                         </ul>
                     </div>

@@ -24,8 +24,8 @@ Route::get('watch-tv', function () {
 });
 Route::get('/',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('home');
 
+Route::get('/video',[App\Http\Controllers\Frontend\VideoController::class,'show'])->name('video.show');
 Route::get('/videos',[App\Http\Controllers\Frontend\VideoController::class,'index'])->name('video.index');
-Route::get('/video/show',[App\Http\Controllers\Frontend\VideoController::class,'show'])->name('video.show');
 
 Route::get('/news',[App\Http\Controllers\Frontend\PostController::class,'index'])->name('post.index');
 Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'show'])->name('post.show');

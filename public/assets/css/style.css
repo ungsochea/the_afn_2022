@@ -1,34 +1,4 @@
-/***
- Theme Name:  NewsViral
- Theme URI:   http://demos.alithemes.com/html/newsviral
- Description: Modern News & Magazine HTML Template
- Author:    alithemes.com
- Author URI:  http://alithemes.com
- Version:   2.1
- License:   GNU General Public License v2 or later
- License URI: http://www.gnu.org/licenses/gpl-2.0.html
-==============================
-TABLE CONTENT
-	Import Google Fonts
-	Include Third Party CSS Library
-	GENERAL
-	HEADER
-		Offcanvas Sidebar
-		Search form
-		Main header
-		Mega menu
-		Header layouts
-	Page layouts
-	Pagination
-	Breadcrumb
-	CATEGORY PAGES
-	SINGLE POST
-	Author box
-	comment
-	Post share social
-	WP STYPE
-	Custom amine
-***/
+@charset "utf-8";
 
 /*Import google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Roboto&display=swap');
@@ -49,9 +19,35 @@ TABLE CONTENT
 @import url(vendor/slick.css);
 @import url(vendor/nice-select.css);
 @import url(vendor/perfect-scrollbar.css);
+@font-face {
+    src: url('/../fonts/Gilroy-Bold.ttf') format('truetype');
+    font-family: "gilroy-bold";
+    font-weight: 700;
+}
+@font-face {
+    src: url('/../fonts/Gilroy-Heavy.ttf') format('truetype');
+    font-family: "gilroy-heavy";
+    font-weight: 600;
 
+}
+@font-face {
+    src: url('/../fonts/Gilroy-Light.ttf') format('truetype');
+    font-family: "gilroy-light";
+    font-weight: 500;
+
+}
+@font-face {
+    src: url('/../fonts/Gilroy-Medium.ttf') format('truetype');
+    font-family: "gilroy-medium";
+    font-weight: 400;
+
+}
+@font-face {
+    src: url('/../fonts/Gilroy-Regular.ttf') format('truetype');
+    font-family: "gilroy-regular";
+}
 /* GENERAL */
-body{font-family:'Roboto',sans-serif;font-weight:normal;font-style:normal;background:#f7f8f9;}
+body{font-family:'gilroy-regular',sans-serif;font-weight:normal;font-style:normal;background:#f7f8f9;}
 h1,
 h2,
 h3,
@@ -61,7 +57,7 @@ h6,
 a.read-more,
 .entry-meta,
 .readmore-btn,
-.widget-taber a.nav-link{font-family:'Nunito',sans-serif;margin-top:0px;font-style:normal;font-weight:900;text-transform:normal}
+.widget-taber a.nav-link{font-family:'gilroy-regular',sans-serif;margin-top:0px;font-style:normal;font-weight:900;text-transform:normal}
 .entry-meta.font-x-small{font-weight:600;}
 p{font-family:'Roboto',sans-serif;font-size:16px;margin-bottom:15px;font-weight:normal}
 video{max-width:100%;}
@@ -99,7 +95,7 @@ img{max-width:100%;}
 ul{padding:0;margin:0;}
 .font-size-1rem{font-size:1rem;}
 .readmore-btn:hover i{padding-left:6px;}
-.boxed-btn{background:#fff;display:inline-block;padding:18px 44px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:400;border:0;border:1px solid;letter-spacing:3px;text-align:center;text-transform:uppercase;cursor:pointer}
+.boxed-btn{background:#fff;display:inline-block;padding:18px 44px;font-family:'gilroy-regular',sans-serif;font-size:14px;font-weight:400;border:0;border:1px solid;letter-spacing:3px;text-align:center;text-transform:uppercase;cursor:pointer}
 .boxed-btn:hover{color:#fff!important;border:1px solid}
 .boxed-btn:focus{outline:none}
 .boxed-btn.large-width{width:220px}
@@ -228,7 +224,7 @@ transition:visibility 0s linear .3s,transform .3s ease,opacity .3s ease,-webkit-
 .main-search-form .search-switch{position:absolute;right:30px;top:50%;transform:translateY(-50%);margin-top:-3px;line-height:1;border-left:1px solid #dfe0e6;padding-left:15px;font-size:14px;}
 
 /*Main header*/
-.main-header .main-nav ul li a{position:relative;color:#4d4d4d;font-weight:700;padding:0;display:block;font-size:14px;-webkit-transition:all .2s ease-out 0s;-moz-transition:all .2s ease-out 0s;-ms-transition:all .2s ease-out 0s;-o-transition:all .2s ease-out 0s;transition:all .2s ease-out 0s;font-family:'Nunito',sans-serif;line-height:1.5;line-height:60px;}
+.main-header .main-nav ul li a{position:relative;color:#4d4d4d;font-weight:700;padding:0;display:block;font-size:14px;-webkit-transition:all .2s ease-out 0s;-moz-transition:all .2s ease-out 0s;-ms-transition:all .2s ease-out 0s;-o-transition:all .2s ease-out 0s;transition:all .2s ease-out 0s;font-family:'gilroy-regular',sans-serif;line-height:1.5;line-height:60px;}
 .main-header .main-nav ul li > a::after{content:"";width:0;height:2px;position:absolute;left:50%;top:-1px;opacity:0.5;transform:translateX(-50%);}
 .main-header .main-nav ul li.mega-menu-item a::after,
 .main-header .main-nav ul li ul a::after{content:none;}
