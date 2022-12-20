@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <!-- sidebar-left -->
+    <div class="row" style="height: 500px">
+        <p class="mx-auto">No data</p>
+        {{-- <!-- sidebar-left -->
         <div class="col-lg-2 col-md-3 primary-sidebar sticky-sidebar sidebar-left order-2 order-md-1">
             <!-- Widget Weather -->
             <div class="sidebar-widget widget-weather border-radius-10 bg-white mb-30 mt-55">
@@ -838,7 +839,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
