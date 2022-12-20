@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
-        <a href="{{ route('admin.dashboard.index') }}" class="sidebar-brand">
-        Noble<span>UI</span>
+        <a href="/" class="sidebar-brand">
+        Go to<span> Home</span>
         </a>
         <div class="sidebar-toggler not-active">
         <span></span>

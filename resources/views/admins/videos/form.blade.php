@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/admins/vendors/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/admins/vendors/select2/select2.min.css">
     <link rel="stylesheet" href="/admins/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.css">
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
 <style>
     .select2-selection--single {
         height: 40px!important;
@@ -57,7 +58,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
     <div>
-      <h4 class="mb-3 mb-md-0">{{ $video->id ? 'Update Post' : 'Add Post'}}</h4>
+      <h4 class="mb-3 mb-md-0">{{ $video->id ? 'Update Video' : 'Add Video'}}</h4>
     </div>
 </div>
 <form class="row mb-3">
@@ -70,6 +71,11 @@
                 <label id="title-error" class="error text-danger title" for="title"></label>
             </div>
             <div class="mb-1">
+                <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                <textarea class="form-control" name="description" id="description" cols="30" rows="5">{{ $video->description ?? ''}}</textarea>
+                <label id="description-error" class="error text-danger description" for="description"></label>
+            </div>
+            <div class="mb-1">
                 <label for="link" class="form-label">Video Type <span class="text-danger">*</span></label>
                 <select class="form-select" id="type" name="type">
                     @foreach (VideoType() as $value => $key)
@@ -79,15 +85,61 @@
                 <label id="link-error" class="error text-danger link" for="link"></label>
             </div>
             <div class="mb-1">
-                <label for="link" class="form-label">Link <span class="text-danger">*</span></label>
+                <label for="link" class="form-label">Link or ID</label>
                 <input type="text" class="form-control" id="link" name="link" placeholder="Enter link" value="{{ $video->link ?? ''}}">
                 <label id="link-error" class="error text-danger link" for="link"></label>
             </div>
             <div class="mb-1">
-                <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
-                <textarea class="form-control" name="description" id="description" cols="30" rows="5">{{ $video->description ?? ''}}</textarea>
-                <label id="description-error" class="error text-danger description" for="description"></label>
+                <label for="source" class="form-label">Original Source</label>
+                <input type="text" class="form-control" id="source" name="source" placeholder="Enter source link" value="{{ $video->source ?? ''}}">
+                <label id="source-error" class="error text-danger source" for="source"></label>
             </div>
+            @if ($video->id)
+            <div class="row">
+                <div class="form-group">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <label for="file" class="form-label">File</label>
+                <div class="col-sm-10">
+                    <div class="mb-1">
+                        <input type="file" accept="video/mp4,video/x-m4v,video/*" class="form-control" id="video_file" name="video_file" placeholder="Enter video_file">
+                        <label id="video_file-error" class="error text-danger video_file" for="video_file"></label>
+                    </div>
+                </div>
+                <div class="col-sm-2 mb-1">
+                    <button id="video_upload" class="btn btn-success" disabled>Upload</button>
+                </div>
+            </div>
+            @endif
+
+            @if ($video->file_name)
+            <div class="mb-1 text-center">
+                <video
+                    id="my-video"
+                    class="video-js"
+                    controls
+                    preload="auto"
+                    width="720"
+                    height="360"
+                    poster="/images/video_thumbnail.png"
+                    data-setup="{}"
+                >
+                    <source src="https://afn.sgp1.cdn.digitaloceanspaces.com/ASC2020/IndonesiavsCambodiaAFFSuzukiCup2020GroupStage.mp4" type="video/mp4" />
+                    <source src="https://afn.sgp1.cdn.digitaloceanspaces.com/ASC2020/IndonesiavsCambodiaAFFSuzukiCup2020GroupStage.mp4" type="video/webm" />
+                    <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank"
+                        >supports HTML5 video</a
+                    >
+                    </p>
+                </video>
+            </div>
+            @endif
+
         </div>
       </div>
     </div>
@@ -168,7 +220,7 @@
     <script src="/admins/vendors/moment/moment.min.js"></script>
     <script src="/admins/vendors/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
     <script src="/admins/vendors/sweetalert2/sweetalert2.min.js"></script>
-
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
             $('#is_activated').select2();
             $('#categories').select2({
@@ -219,6 +271,100 @@
                 autoclose: true,
                 todayBtn: true,
             });
+
+            $('#video_file').change(function(){
+                if( $("input[name=video_file]")[0].files.length != 0 ){
+                    $( "#video_upload" ).prop( "disabled", false );
+                    $('label.error').html('');
+                    $("input[name=video_file]").removeClass('is-invalid')
+
+                    // formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
+                }
+            })
+            $('#video_upload').click(function(e){
+                e.preventDefault();
+                //console.log('ok')
+                var formData = new FormData();
+                if( $("input[name=video_file]")[0].files.length != 0 ){
+                    formData.append('video_file', $("input[name=video_file]")[0].files[0]);
+                }
+                $.ajax({
+                    url: "/admin/video-file-upload",
+                    enctype: "multipart/form-data",
+                    type: "POST",
+                    dataType: 'json',
+                    contentType : false,
+                    processData : false,
+                    data:formData,
+                    beforeSend: function() {
+                        $('#video_upload').attr('disabled', 'disabled');
+                        $('#video_upload').html('Loading...');
+                        //var percentage = '0';
+                        //console.log(percentage);
+
+                    },
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+
+                        xhr.upload.addEventListener("progress", function(evt) {
+
+                            if (evt.lengthComputable) {
+                                var percentComplete = (evt.loaded / evt.total) * 80;
+
+                                //Do something with upload progress here
+                                console.log(percentComplete)
+                                $('.progress .progress-bar').css("width", percentComplete+'%', function() {
+                                    return $(this).attr("aria-valuenow", percentComplete) + "%";
+                                })
+                            }
+
+                        }, false);
+
+                        return xhr;
+
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        var percentComplete = 100;
+                        $('.progress .progress-bar').css("width", percentComplete+'%', function() {
+                            return $(this).attr("aria-valuenow", percentComplete) + "%";
+                        })
+                        if(data.response){
+                            var msg = data.response.message;
+                        }else{
+                            var msg = "No message.";
+                        }
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true,
+                        });
+                        Toast.fire({
+                            icon: 'success',
+                            title: msg,
+                        }).then((result) => {
+                            //window.location.replace('/admin/video/'+data.video.id+'/edit');
+                        });
+                        $('#video_upload').attr('disabled',false);
+                        $('#video_upload').html('Upload');
+                    },
+                    error: function (data) {
+                        if(data.status == 413){
+                            $('.video_file').html('File to large.')
+                        }
+                        $('#video_upload').attr('disabled',false);
+                        $('#video_upload').html('Upload');
+                        $.each(data.responseJSON.errors, function (key, item)
+                        {
+                            $("input[name="+key+"]").addClass('is-invalid')
+                            $("label."+key).html(item);
+                        });
+                    }
+                });
+            })
+
             @if ($video->id)
             $('#btnSubmit').click(function(){
                 var id = $("#btnSubmit").attr('data-id');
@@ -231,6 +377,7 @@
                 formData.append('type',$('#type').val());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
+                formData.append('source',$('#source').val());
                 if( $("input[name=thumbnail]")[0].files.length != 0 ){
                     formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
                 }
@@ -290,10 +437,7 @@
                 });
                 // alert(id)
             })
-            function update(id){
-                alert(id)
 
-            }
             @else
             function store(){
                 $('label.error').html('');
@@ -305,6 +449,7 @@
                 formData.append('type',$('#type').val());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
+                formData.append('source',$('#source').val());
                 if( $("input[name=thumbnail]")[0].files.length != 0 ){
                     formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
                 }

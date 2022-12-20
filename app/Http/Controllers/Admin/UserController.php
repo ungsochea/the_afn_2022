@@ -28,5 +28,9 @@ class UserController extends Controller
         }
         return response()->json($request->all());
     }
+    public function logout() {
+        Auth::logout();
 
+        return Redirect(url('/'));
+    }
 }

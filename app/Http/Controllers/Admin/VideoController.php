@@ -47,7 +47,10 @@ class VideoController extends Controller
             'description'   => $request->description,
             'is_activated'  => $request->is_activated,
             'published_at'  => $request->published_at,
+            'source'        => $request->source,
         ]);
+        $video->categories()->attach($request->categories);
+        $video->tags()->attach($request->tags);
         $response['message'] = "Added successfully.";
         return response()->json(compact('response','video'));
     }
@@ -71,6 +74,7 @@ class VideoController extends Controller
             'description'   => $request->description,
             'is_activated'  => $request->is_activated,
             'published_at'  => $request->published_at,
+            'source'        => $request->source,
         ]);
         $video->categories()->sync($request->categories);
         $video->tags()->sync($request->tags);
@@ -143,5 +147,23 @@ class VideoController extends Controller
             return response()->json(compact('response'),500);
         }
 
+    }
+    public function fileUpload(Request $request){
+        abort_if(!$request->ajax(),500);
+        $request->validate([
+            'video_file' => 'required|file|mimetypes:video/mp4,video/mpeg,video/x-matroska|max:1024000',
+        ]);
+
+        $uploadedFile = $request->file('video_file');
+        $file_name = time().trim(str_replace(" ","_",$uploadedFile->getClientOriginalName()));
+        $c = Storage::disk('do_spaces')->putFileAs(
+            'file_videos/'.$file_name,
+            $uploadedFile,
+            null
+        );
+
+        // $video = new Video();
+        // $video->file_name = $request->video_file->getSize();
+        return response()->json($c);
     }
 }

@@ -16,7 +16,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Route::get('phpmyinfo', function () {
+    phpinfo();
+});
+Route::get('watch-tv', function () {
+    return view('admins.tv.index');
+});
 Route::get('/',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('home');
 
 Route::get('/videos',[App\Http\Controllers\Frontend\VideoController::class,'index'])->name('video.index');
@@ -69,6 +74,7 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
         Route::delete('video-delete/{id}','destroy_forever');
         Route::post('video/{video}','update');
         Route::get('video-search','search');
+        Route::post('video-file-upload','fileUpload');
         Route::get('video/delete','delete')->name('video.index_delete');
     });
     Route::resource('video',App\Http\Controllers\Admin\VideoController::class);
@@ -92,6 +98,7 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
 // Login
 Route::get('login',[App\Http\Controllers\Admin\UserController::class,'loginForm'])->name('admin.login')->middleware('guest');
 Route::post('login',[App\Http\Controllers\Admin\UserController::class,'login'])->name('admin.login')->middleware('guest');
+Route::get('logout',[App\Http\Controllers\Admin\UserController::class,'logout'])->name('admin.logout')->middleware('auth');
 
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
