@@ -5,19 +5,20 @@
     <div class="container">
         <h2>
             <span class="text-dark">News</span>
-            <span class="post-count">1256 articles</span>
+            <span class="post-count">0 articles</span>
         </h2>
         <div class="breadcrumb">
             <span class="no-arrow"><i class="ti ti-location-pin mr-5"></i>You are here:</span>
             <a href="/" rel="nofollow">Home</a>
             <span></span>
-            Daily News
+           News
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        @for ($i = 0; $i < 20; $i++)
+    <div class="row" style="height: 500px">
+        <p class="text-center mx-auto text-danger">No post</p>
+        {{-- @for ($i = 0; $i < 20; $i++)
         <article class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
             <div class="background-white border-radius-10 p-10 mb-30">
                 <div class="post-thumb d-flex mb-15 border-radius-15 img-hover-scale">
@@ -31,7 +32,7 @@
                     </div>
                     <h5 class="post-title mb-15">
                         <a href="{{ route('post.show') }}">The litigants on the screen are not actors</a></h5>
-                    {{--  <p class="post-exerpt font-medium text-muted mb-30">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell one multi-million dollar home currently.</p>  --}}
+                     <p class="post-exerpt font-medium text-muted mb-30">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell one multi-million dollar home currently.</p>
                     <div class="entry-meta meta-1 font-x-small color-grey float-left text-uppercase mb-10">
                         <span class="post-in">In <a href="category.html">US</a></span>
                         <span class="post-by">By <a href="author.html">John Nathan</a></span>
@@ -40,7 +41,7 @@
                 </div>
             </div>
         </article>
-       @endfor
+       @endfor --}}
     </div>
     {{--  <div class="row">
         @for ($i = 0; $i < 20; $i++)

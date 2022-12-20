@@ -61,14 +61,18 @@
                 {{ $video->title ?? '' }}
             </h3>
             <div class="entry-meta meta-1 font-x-small color-grey text-uppercase">
-                <span class="post-by">By <a href="author.html">Adam Liptak </a> &amp; <a href="author.html">Michael D. Shear</a></span>
+                @if ($video->source)
+                <a class="entry-meta meta-0" href="{{ $video->source }}" target="_blank"><span class="post-in background1 text-danger font-x-small"><i class="ti-control-play"></i>Original Source</span></a>
+                @endif
+                {{-- <span class="post-by">By <a href="author.html">Adam Liptak </a> &amp; <a href="author.html">Michael D. Shear</a></span>
                 <span class="post-on">18/09/2020 09:35 EST</span>
-                <span class="time-reading">12 mins read</span>
-                <p class="font-x-small mt-10">
+                <span class="time-reading">12 mins read</span> --}}
+                {{-- <p class="font-x-small mt-10">
+                    <span class="hit-count"><i class="ti-comment mr-5"></i>82 comments</span>
                     <span class="hit-count"><i class="ti-comment mr-5"></i>82 comments</span>
                     <span class="hit-count"><i class="ti-heart mr-5"></i>68 likes</span>
                     <span class="hit-count"><i class="ti-star mr-5"></i>8/10</span>
-                </p>
+                </p> --}}
             </div>
             <hr>
             <div class="entry-main-content">

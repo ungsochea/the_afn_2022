@@ -19,4 +19,9 @@ class Tag extends Model
     public function getStatusColorAttribute(){
        return $this->is_activated == 0 ? 'danger' : 'success';
     }
+
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class,'video_tags');
+    }
 }
