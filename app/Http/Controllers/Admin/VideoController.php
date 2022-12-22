@@ -48,6 +48,7 @@ class VideoController extends Controller
             'is_activated'  => $request->is_activated,
             'published_at'  => $request->published_at,
             'source'        => $request->source,
+            'body'          => $request->body,
         ]);
         $video->categories()->attach($request->categories);
         $video->tags()->attach($request->tags);
@@ -75,6 +76,7 @@ class VideoController extends Controller
             'is_activated'  => $request->is_activated,
             'published_at'  => $request->published_at,
             'source'        => $request->source,
+            'body'          => $request->body,
         ]);
         $video->categories()->sync($request->categories);
         $video->tags()->sync($request->tags);

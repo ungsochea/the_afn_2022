@@ -76,7 +76,7 @@
             </div>
             <hr>
             <div class="entry-main-content">
-                <p>{!! $video->description !!}</p>
+                <p>{!! $video->body !!}</p>
             </div>
 
             <div class="entry-bottom mt-50 mb-30">

@@ -47,7 +47,7 @@ class VideoController extends Controller
             SEOMeta::setTitle($video->title);
             SEOMeta::setDescription($video->description);
             SEOMeta::setCanonical(url()->current().'?v='.$video->id);
-            SEOMeta::addMeta('twitter:image:alt','ASEAN Football News');
+            SEOMeta::addMeta('twitter:image:alt',$video->title);
 
             // OpenGraph
             OpenGraph::setTitle($video->title);
@@ -59,7 +59,7 @@ class VideoController extends Controller
             OpenGraph::addProperty('video:secure_url',$video->source);
             OpenGraph::addProperty('video:width','486');
             OpenGraph::addProperty('video:height','273');
-            OpenGraph::addProperty('image:alt', 'ASEAN Football News');
+            OpenGraph::addProperty('image:alt', $video->title);
             OpenGraph::addImage($video->thumbnail_m);
 
             // JsonLd

@@ -76,6 +76,11 @@
                 <label id="description-error" class="error text-danger description" for="description"></label>
             </div>
             <div class="mb-1">
+                <label for="body" class="form-label">Body <span class="text-danger">*</span></label>
+                <textarea class="form-control" name="body" id="body" cols="30" rows="5">{{ $video->body ?? ''}}</textarea>
+                <label id="body-error" class="error text-danger body" for="body"></label>
+            </div>
+            <div class="mb-1">
                 <label for="link" class="form-label">Video Type <span class="text-danger">*</span></label>
                 <select class="form-select" id="type" name="type">
                     @foreach (VideoType() as $value => $key)
@@ -224,7 +229,7 @@
     <script>
         var editor_config = {
                 path_absolute : "/",
-                selector: 'textarea#description',
+                selector: 'textarea#body',
                 relative_urls: false,
                 height: 300,
                 plugins: [
@@ -388,10 +393,11 @@
                 formData.append('title',$('#title').val());
                 formData.append('link',$('#link').val());
                 formData.append('type',$('#type').val());
+                formData.append('description',$('#description').val());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
                 formData.append('source',$('#source').val());
-                formData.append('description',tinymce.get('description').getContent());
+                formData.append('body',tinymce.get('body').getContent());
 
                 if( $("input[name=thumbnail]")[0].files.length != 0 ){
                     formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
@@ -460,7 +466,8 @@
                 var formData = new FormData();
                 formData.append('title',$('#title').val());
                 formData.append('link',$('#link').val());
-                formData.append('description',tinymce.get('description').getContent());
+                formData.append('description',$('#description').val());
+                formData.append('body',tinymce.get('body').getContent());
                 formData.append('type',$('#type').val());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
