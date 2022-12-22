@@ -2,95 +2,24 @@
 
 @section('content')
 <div class="container">
-    <div class="row" style="height: 500px">
-        <p class="mx-auto">No data</p>
-        {{-- <!-- sidebar-left -->
+    <div class="row">
+        {{-- <p class="mx-auto">No data</p> --}}
+        <!-- sidebar-left -->
         <div class="col-lg-2 col-md-3 primary-sidebar sticky-sidebar sidebar-left order-2 order-md-1">
-            <!-- Widget Weather -->
-            <div class="sidebar-widget widget-weather border-radius-10 bg-white mb-30 mt-55">
-                <div class="d-flex">
-                    <div class="font-medium">
-                        <p>Monday</p>
-                        <h2>12</h2>
-                        <p><strong>August</strong></p>
-                    </div>
-                    <div class="font-medium ml-10 pt-20">
-                        <div id="datetime" class="d-inline-block">
-                            <ul>
-                                <li><span class="font-small">
-                                        <a class="text-primary" href="#">London</a><br>
-                                        <i class="wi wi-day-sunny mr-5"></i>32ºc
-                                    </span>
-                                    <p>Sunny</p>
-                                </li>
-                                <li><span class="font-small">
-                                        <a class="text-danger" href="#">Paris</a><br>
-                                        <i class="wi wi-day-cloudy mr-5"></i>28ºc
-                                    </span>
-                                    <p>Cloudy</p>
-                                </li>
-                                <li><span class="font-small">
-                                        <a class="text-success" href="#">New York</a><br>
-                                        <i class="wi wi-rain-mix mr-5"></i>25ºc
-                                    </span>
-                                    <p>Rainy</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Widget Categories -->
-            <div class="sidebar-widget widget_categories_2 border-radius-10 bg-white mb-30">
-                <ul class="font-small text-muted">
-                    <li class="cat-item cat-item-2 active"><a href="#"><span class="mr-10">
-                                <ion-icon name="earth-outline"></ion-icon>
-                            </span>International</a></li>
-                    <li class="cat-item cat-item-3"><a href="#"><span class="mr-10">
-                                <ion-icon name="trending-up-outline"></ion-icon>
-                            </span>Businesss</a></li>
-                    <li class="cat-item cat-item-4"><a href="#"><span class="mr-10">
-                                <ion-icon name="glasses-outline"></ion-icon>
-                            </span>Entertainment</a></li>
-                    <li class="cat-item cat-item-5"><a href="#"><span class="mr-10">
-                                <ion-icon name="bicycle-outline"></ion-icon>
-                            </span>Sport News</a></li>
-                    <li class="cat-item cat-item-6"><a href="#"><span class="mr-10">
-                                <ion-icon name="fitness-outline"></ion-icon>
-                            </span>Health</a></li>
-                    <li class="cat-item cat-item-2"><a href="#"><span class="mr-10">
-                                <ion-icon name="book-outline"></ion-icon>
-                            </span>Magazine</a></li>
-                </ul>
-            </div>
+
             <!-- Widget Categories -->
             <div class="sidebar-widget widget_categories border-radius-10 bg-white mb-30">
                 <div class="widget-header position-relative mb-15">
-                    <h5 class="widget-title"><strong>Categories</strong></h5>
+                    <h5 class="widget-title"><strong>Fixtures</strong></h5>
                 </div>
                 <ul class="font-small text-muted">
-                    <li class="cat-item cat-item-2"><a href="#">Global Economy</a></li>
-                    <li class="cat-item cat-item-3"><a href="#">Environment</a></li>
-                    <li class="cat-item cat-item-4"><a href="#">Religion</a></li>
-                    <li class="cat-item cat-item-5"><a href="#">Fashion</a></li>
-                    <li class="cat-item cat-item-6"><a href="#">Terrorism</a></li>
-                    <li class="cat-item cat-item-7"><a href="#">Conflicts</a></li>
-                    <li class="cat-item cat-item-2"><a href="#">Scandals</a></li>
-                    <li class="cat-item cat-item-2"><a href="#">Executive</a></li>
-                    <li class="cat-item cat-item-2"><a href="#">Foreign policy</a></li>
-                    <li class="cat-item cat-item-2"><a href="#">Healthy Living</a></li>
-                    <li class="cat-item cat-item-3"><a href="#">Medical Research</a></li>
-                    <li class="cat-item cat-item-4"><a href="#">Children’s Health</a></li>
-                    <li class="cat-item cat-item-5"><a href="#">Around the World</a></li>
-                    <li class="cat-item cat-item-6"><a href="#">Ad Choices</a></li>
-                    <li class="cat-item cat-item-7"><a href="#">Mental Health</a></li>
-                    <li class="cat-item cat-item-2"><a href="#">Media Relations</a></li>
+                    <li class="cat-item cat-item-2"><a href="javascript:;">No data</a></li>
                 </ul>
             </div>
         </div>
         <!-- main content -->
         <div class="col-lg-10 col-md-9 order-1 order-md-2">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-8 col-md-12">
                     <!-- Featured posts -->
                     <div class="featured-post mb-50">
@@ -734,112 +663,54 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row mb-50 mt-15">
                 <div class="col-md-12">
                     <div class="widget-header position-relative mb-30">
-                        <h4 class="widget-title mb-0">From <span>Blog</span></h4>
+                        <div class="row">
+                            <div class="col-7">
+                                <h5 class="widget-title mb-0">Videos</h5>
+                            </div>
+                            <div class="col-5 text-right">
+                                <h6 class="font-medium pr-15">
+                                    <a class="text-muted font-small" href="/videos">View more</a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
+                    {{-- <div class="widget-header position-relative mb-30">
+                        <h4 class="widget-title mb-0">From <span>Videos</span></h4>
+                    </div> --}}
                     <div class="post-carausel-2 post-module-1 row">
+                        @foreach ($videos as $video)
+
                         <div class="col">
                             <div class="post-thumb position-relative">
-                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" style="background-image: url(assets/imgs/thumbnail-7.jpg)">
-                                    <a class="img-link" href="single.html"></a>
+                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" style="background-image: url({{ $video->thumbnail_s }})">
+                                    <a class="img-link" href="/video?v={{ $video->id }}"></a>
                                     <div class="post-content-overlay">
                                         <div class="entry-meta meta-0 font-small mb-15">
-                                            <a href="category.html"><span class="post-cat bg-success color-white">Travel</span></a>
+                                            @foreach ($video->categories as $category)
+                                            <a href="/video?topic={{ $category->slug }}"><span class="post-cat bg-success color-white">{{ $category->title ?? '' }}</span></a>
+                                            @endforeach
                                         </div>
                                         <h5 class="post-title">
-                                            <a class="color-white" href="single.html">Tesla’s Cooking Up A New Way To Wire Its Cars, Report Says</a>
+                                            <a class="color-white" href="/video?v={{ $video->id }}">{{ $video->title }}</a>
                                         </h5>
                                         <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                            <span><span class="mr-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
-                                            <span class="ml-15"><span class="mr-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
+                                            <span><span class="mr-5"><i class="fa fa-eye" aria-hidden="true"></i></span>{{ $video->views }}</span>
+                                            {{-- <span class="ml-15"><span class="mr-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="post-thumb position-relative">
-                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" style="background-image: url(assets/imgs/thumbnail-8.jpg)">
-                                    <a class="img-link" href="single.html"></a>
-                                    <div class="post-content-overlay">
-                                        <div class="entry-meta meta-0 font-small mb-15">
-                                            <a href="category.html"><span class="post-cat bg-info color-white">Beauty</span></a>
-                                        </div>
-                                        <h5 class="post-title">
-                                            <a class="color-white" href="single.html">Ratcliffe to be Director of nation talent Trump ignored</a>
-                                        </h5>
-                                        <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                            <span><span class="mr-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
-                                            <span class="ml-15"><span class="mr-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="post-thumb position-relative">
-                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" style="background-image: url(assets/imgs/thumbnail-10.jpg)">
-                                    <a class="img-link" href="single.html"></a>
-                                    <div class="post-content-overlay">
-                                        <div class="entry-meta meta-0 font-small mb-15">
-                                            <a href="category.html"><span class="post-cat bg-danger color-white">Art</span></a>
-                                        </div>
-                                        <h5 class="post-title">
-                                            <a class="color-white" href="single.html">Countries seek ‘new history’ as figures are re-examined</a>
-                                        </h5>
-                                        <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                            <span><span class="mr-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
-                                            <span class="ml-15"><span class="mr-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="post-thumb position-relative">
-                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" style="background-image: url(assets/imgs/thumbnail-15.jpg)">
-                                    <a class="img-link" href="single.html"></a>
-                                    <div class="post-content-overlay">
-                                        <div class="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html"><span class="post-cat bg-warning color-white">Gaming</span></a>
-                                        </div>
-                                        <h5 class="post-title">
-                                            <a class="color-white" href="single.html">The secret to moving this ancient sphinx screening</a>
-                                        </h5>
-                                        <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                            <span><span class="mr-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
-                                            <span class="ml-15"><span class="mr-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="post-thumb position-relative">
-                                <div class="thumb-overlay img-hover-slide border-radius-15 position-relative" style="background-image: url(assets/imgs/thumbnail-16.jpg)">
-                                    <a class="img-link" href="single.html"></a>
-                                    <div class="post-content-overlay">
-                                        <div class="entry-meta meta-0 font-small mb-10">
-                                            <a href="category.html"><span class="post-cat bg-primary color-white">Garden</span></a>
-                                        </div>
-                                        <h5 class="post-title">
-                                            <a class="color-white" href="single.html">Harbour amid a Slowen down in singer city screening</a>
-                                        </h5>
-                                        <div class="entry-meta meta-1 font-x-small mt-10 pr-5 pl-5 text-muted">
-                                            <span><span class="mr-5"><i class="fa fa-eye" aria-hidden="true"></i></span>5.8k</span>
-                                            <span class="ml-15"><span class="mr-5 text-muted"><i class="fa fa-comment" aria-hidden="true"></i></span>2.5k</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 @endsection
