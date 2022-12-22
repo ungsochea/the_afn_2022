@@ -18,6 +18,7 @@
     {!! Twitter::generate() !!}
     {!! JsonLd::generate() !!}
     <meta property="fb:app_id" content="1107159879970524" />
+    <meta name="facebook-domain-verification" content="qn9gn8srfid92c77t4wiqc81ewecws" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RNKSQ1Z57R"></script>
     <script>
