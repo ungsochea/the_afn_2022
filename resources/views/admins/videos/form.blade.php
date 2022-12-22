@@ -222,6 +222,20 @@
     <script src="/admins/vendors/sweetalert2/sweetalert2.min.js"></script>
     <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
     <script>
+        var editor_config = {
+                path_absolute : "/",
+                selector: 'textarea#description',
+                relative_urls: false,
+                height: 300,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+
+              };
+              tinymce.init(editor_config);
             $('#is_activated').select2();
             $('#categories').select2({
                 ajax: {
@@ -373,11 +387,12 @@
                 var formData = new FormData();
                 formData.append('title',$('#title').val());
                 formData.append('link',$('#link').val());
-                formData.append('description',$('#description').val());
                 formData.append('type',$('#type').val());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
                 formData.append('source',$('#source').val());
+                formData.append('description',tinymce.get('description').getContent());
+
                 if( $("input[name=thumbnail]")[0].files.length != 0 ){
                     formData.append('thumbnail', $("input[name=thumbnail]")[0].files[0]);
                 }
@@ -445,7 +460,7 @@
                 var formData = new FormData();
                 formData.append('title',$('#title').val());
                 formData.append('link',$('#link').val());
-                formData.append('description',$('#description').val());
+                formData.append('description',tinymce.get('description').getContent());
                 formData.append('type',$('#type').val());
                 formData.append('is_activated',$('#is_activated').val());
                 formData.append('published_at',$('#published_at').val());
