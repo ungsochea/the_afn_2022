@@ -46,7 +46,7 @@ class VideoController extends Controller
             // SEOMeta
             SEOMeta::setTitle($video->title);
             SEOMeta::setDescription($video->description);
-            SEOMeta::setCanonical(url()->current());
+            SEOMeta::setCanonical(url()->current().'?v='.$video->id);
             SEOMeta::addMeta('twitter:image:alt','ASEAN Football News');
 
             // OpenGraph
