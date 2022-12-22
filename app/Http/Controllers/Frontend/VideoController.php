@@ -52,7 +52,7 @@ class VideoController extends Controller
             // OpenGraph
             OpenGraph::setTitle($video->title);
             OpenGraph::setDescription($video->description);
-            OpenGraph::setUrl(url()->current());
+            OpenGraph::setUrl(url()->current().'?v='.$video->id);
             OpenGraph::addProperty('type', 'video');
             OpenGraph::addProperty('video:type', 'application/x-shockwave-flash');
             OpenGraph::addProperty('video',$video->source);
