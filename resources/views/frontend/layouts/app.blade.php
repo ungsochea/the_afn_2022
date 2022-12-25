@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <title>The AFN</title> --}}
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -216,6 +217,7 @@
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
     <!-- NewsViral JS -->
     <script src="/assets/js/main.js"></script>
+    @yield('js')
 </body>
 
 </html>

@@ -30,6 +30,10 @@ Route::get('/videos',[App\Http\Controllers\Frontend\VideoController::class,'inde
 Route::get('/news',[App\Http\Controllers\Frontend\PostController::class,'index'])->name('post.index');
 Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'show'])->name('post.show');
 
+Route::controller(App\Http\Controllers\Frontend\ContactUsController::class)->group(function(){
+    Route::get('/contact-us','index');
+    Route::post('/contact-us','store');
+});
 
 // Admin
 Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
