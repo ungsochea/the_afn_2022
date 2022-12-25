@@ -61,7 +61,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/"><span class="mr-15">
+                                    <a href="{{ route('contac_us.index') }}"><span class="mr-15">
                                             <ion-icon name="mail-unread-outline"></ion-icon></span>Contact
                                     </a>
                                 </li>

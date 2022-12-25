@@ -31,7 +31,7 @@ Route::get('/news',[App\Http\Controllers\Frontend\PostController::class,'index']
 Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'show'])->name('post.show');
 
 Route::controller(App\Http\Controllers\Frontend\ContactUsController::class)->group(function(){
-    Route::get('/contact-us','index');
+    Route::get('/contact-us','index')->name('contac_us.index');
     Route::post('/contact-us','store');
 });
 
@@ -83,6 +83,13 @@ Route::middleware('admin')->prefix('admin')->as('admin.')->group(function(){
     });
     Route::resource('video',App\Http\Controllers\Admin\VideoController::class);
 
+    // Contact Us
+    Route::controller(App\Http\Controllers\Admin\ContactUsController::class)->group(function(){
+        Route::get('contact-get-ajax','getAjax');
+        Route::get('contact-us','index')->name('contact_us.index');
+        Route::get('contact-search','search');
+        Route::delete('contact-us/{contact_us}','destroy');
+    });
     // Ajax
     Route::controller(App\Http\Controllers\Admin\AjaxController::class)->group(function(){
         Route::get('slug-generate','slugGenerate');
