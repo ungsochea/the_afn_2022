@@ -72,7 +72,7 @@
             </li>
             <li class="nav-item {{ (request()->routeIs('admin.contact_us.index')) ? 'active':'' }}">
                 <a href="{{ route('admin.contact_us.index') }}" class="nav-link">
-                <i class="fa-solid fa-gauge link-icon"></i>
+                <i class="fa-solid fa-address-book link-icon"></i>
                 <span class="link-title">Contact Us</span>
                 </a>
             </li>
