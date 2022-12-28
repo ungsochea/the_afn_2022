@@ -24,8 +24,15 @@ Route::get('watch-tv', function () {
 });
 Route::get('/',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('home');
 
-Route::get('/video',[App\Http\Controllers\Frontend\VideoController::class,'show'])->name('video.show');
-Route::get('/videos',[App\Http\Controllers\Frontend\VideoController::class,'index'])->name('video.index');
+// Route::get('/video',[App\Http\Controllers\Frontend\VideoController::class,'show'])->name('video.show');
+// Route::get('/videos',[App\Http\Controllers\Frontend\VideoController::class,'index'])->name('video.index');
+
+Route::controller(App\Http\Controllers\Frontend\VideoController::class)->group(function(){
+    Route::get('/video','show')->name('video.show');
+    Route::get('/videos','index')->name('video.index');
+    Route::get('/ajax-get-videos','ajaxGet')->name('video.ajaxGet');
+    Route::get('/ajax-get-popular-videos','ajaxPopularVideo')->name('video.ajaxPopularVideo');
+});
 
 Route::get('/news',[App\Http\Controllers\Frontend\PostController::class,'index'])->name('post.index');
 Route::get('/news/show',[App\Http\Controllers\Frontend\PostController::class,'show'])->name('post.show');

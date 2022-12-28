@@ -25,11 +25,11 @@
                     <!-- Main-menu -->
                     <div class="main-nav text-left float-lg-left float-md-right">
                         <ul class="mobi-menu d-none menu-3-columns" id="navigation">
-                            <li class="cat-item cat-item-2"><a href="#">Global Economy</a></li>
-                            <li class="cat-item cat-item-3"><a href="#">Environment</a></li>
-                            <li class="cat-item cat-item-4"><a href="#">Religion</a></li>
-                            <li class="cat-item cat-item-5"><a href="#">Fashion</a></li>
-                            <li class="cat-item cat-item-6"><a href="#">Terrorism</a></li>
+                            <li class="cat-item cat-item-2"><a href="/"><span class="mr-15"><ion-icon name="home-outline"></ion-icon></span>Home</a></li>
+                            <li class="cat-item cat-item-3"><a href="{{ route('post.index') }}"><span class="mr-15"><ion-icon name="megaphone-outline"></ion-icon></span>News</a></li>
+                            <li class="cat-item cat-item-4"><a href="{{ route('video.index') }}"><span class="mr-15"><ion-icon name="film-outline"></ion-icon></span>Videos</a></li>
+                            <li class="cat-item cat-item-5"><a href="{{ route('contac_us.index') }}"><span class="mr-15"><ion-icon name="mail-unread-outline"></ion-icon></span>Contact</a></li>
+                            {{-- <li class="cat-item cat-item-6"><a href="#">Terrorism</a></li>
                             <li class="cat-item cat-item-7"><a href="#">Conflicts</a></li>
                             <li class="cat-item cat-item-2"><a href="#">Scandals</a></li>
                             <li class="cat-item cat-item-2"><a href="#">Executive</a></li>
@@ -40,29 +40,29 @@
                             <li class="cat-item cat-item-5"><a href="#">Around the World</a></li>
                             <li class="cat-item cat-item-6"><a href="#">Ad Choices</a></li>
                             <li class="cat-item cat-item-7"><a href="#">Mental Health</a></li>
-                            <li class="cat-item cat-item-2"><a href="#">Media Relations</a></li>
+                            <li class="cat-item cat-item-2"><a href="#">Media Relations</a></li> --}}
                         </ul>
                         <nav>
                             <ul class="main-menu d-none d-lg-inline">
                                 <li>
-                                    <a href="/"><span class="mr-15">
-                                        <ion-icon name="home-outline"></ion-icon></span>Home
+                                    <a href="/">
+                                        <span class="mr-15"><ion-icon name="home-outline"></ion-icon></span>Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('post.index') }}"><span class="mr-15">
-                                        <ion-icon name="megaphone-outline"></ion-icon></span>News
+                                    <a href="{{ route('post.index') }}">
+                                        <span class="mr-15"><ion-icon name="megaphone-outline"></ion-icon></span>News
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('video.index') }}"><span class="mr-15">
-                                            <ion-icon name="film-outline"></ion-icon></span>Videos
+                                    <a href="{{ route('video.index') }}">
+                                        <span class="mr-15"><ion-icon name="film-outline"></ion-icon></span>Videos
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('contac_us.index') }}"><span class="mr-15">
-                                            <ion-icon name="mail-unread-outline"></ion-icon></span>Contact
+                                    <a href="{{ route('contac_us.index') }}">
+                                        <span class="mr-15"><ion-icon name="mail-unread-outline"></ion-icon></span>Contact
                                     </a>
                                 </li>
                             </ul>
@@ -86,11 +86,11 @@
                         <span class="search-icon"><i class="ti-search mr-5"></i></span>
                     </form>
                     <!-- Off canvas -->
-                    <div class="off-canvas-toggle-cover">
+                    {{-- <div class="off-canvas-toggle-cover">
                         <div class="off-canvas-toggle hidden d-inline-block ml-15" id="off-canvas-toggle">
                             <ion-icon name="grid-outline"></ion-icon>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

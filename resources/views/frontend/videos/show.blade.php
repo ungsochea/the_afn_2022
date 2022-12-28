@@ -55,7 +55,14 @@
                 <iframe class="video" width="100%" height="100%" src="{{ $video->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
             </figure>
-
+            @elseif($video->type == 'fb')
+            <div class="row">
+                <div class="col">
+                    <div class="facebook-responsive">
+                            {{-- <iframe src='https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/BTVCambodia/videos/466706738765207&width=500&show_text=false&appId=329226946066220&height=280' width="500" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> --}}
+                    </div>
+                </div>
+            </div>
             @endif
             <h3 class="post-title mb-30">
                 {{ $video->title ?? '' }}
@@ -135,27 +142,8 @@
                         <h5 class="widget-title">Most <span>Popular</span></h5>
                     </div>
                     <div class="post-aside-style-2">
-                        <ul class="list-post">
-                            <p>no data</p>
-                            {{-- @for ($i = 0; $i < 7; $i++)
-                            <li class="mb-30 wow fadeIn    animated" style="visibility: visible; animation-name: fadeIn;">
-                                <div class="d-flex">
-                                    <div class="post-thumb d-flex mr-15 border-radius-5 img-hover-scale">
-                                        <a class="color-white" href="single.html">
-                                            <img src="https://thumbor.prod.vidiocdn.com/lHXkhJJWQjSrduKBLBNsBYpYc0M=/372x211/filters:quality(75)/vidio-web-prod-livestreaming/uploads/livestreaming/image/9341/premier-league-959ae8.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="post-content media-body">
-                                        <h6 class="post-title mb-10 text-limit-2-row"><a href="single.html">Vancouver woman finds pictures and videos of herself online</a></h6>
-                                        <div class="entry-meta meta-1 font-x-small color-grey float-left text-uppercase">
-                                            <span class="post-by">By <a href="author.html">K. Marry</a></span>
-                                            <span class="post-on">4m ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            @endfor --}}
-
+                        <ul class="list-post" id="get_data">
+                            <li>loading...</li>
                         </ul>
                     </div>
                 </div>
@@ -174,4 +162,46 @@
     </div>
 
 </div>
+@endsection
+{{-- @section('js')
+
+    <script>
+        alert('ok')
+        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+        $(function(){
+            $.ajax({
+                url: '/ajax-get-popular-videos',
+                type: "GET",
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                    // if(data.videos.total == 0){
+                    //     $('#get_data').html('<div class="col-sm-12"><div class="text-center"><p>No Videos</p></div></div>');
+                    // }else{
+                    //     $('#get_data').html(data.html);
+                    //     var page = data.videos.current_page+1;
+                    //     $('#btn_load').html('<button id="load_more" onclick="more('+page+')" class="btn btn-secondary btn-block" > Load More ... </button>')
+                    //     $('#load_more').attr('onclick','more('+page+')')
+                    // }
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+            });
+        });
+    <script>
+@endsection --}}
+@section('js')
+<script>
+        $.ajaxSetup({headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}});
+        setTimeout(function () {
+            $.ajax({
+                url: '/ajax-get-popular-videos',
+                type: "GET",
+                dataType: 'json',
+                success: function (data) {$('#get_data').html(data.html)},
+                error: function (data) {console.log(data)}
+            });
+        },1500)
+</script>
 @endsection

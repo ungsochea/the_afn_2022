@@ -35,8 +35,25 @@ class VideoController extends Controller
         // Twitter
         TwitterCard::setTitle('Videos');
 
-        $videos = Video::latest()->active()->paginate('16');
-        return view('frontend.videos.index',compact('videos'));
+        return view('frontend.videos.index');
+    }
+    public function ajaxGet(Request $request){
+        if(!$request->ajax()) return abort(500);
+        // if($request->cat){
+        //     $category = Category::find($request->cat);
+        //     $videos = $category->videos()->latest()->active()->paginate(9);
+        // }else{
+        //     $videos = Video::latest()->active()->paginate(9);
+        // }
+        $videos = Video::latest()->active()->paginate(12);
+        $html = view('frontend.videos.get_list',compact('videos'))->render();
+        return response()->json(compact('html','videos'));
+    }
+    public function ajaxPopularVideo(Request $request){
+        if(!$request->ajax()) return abort(500);
+        $popular_videos = Video::orderBy('views','desc')->limit(10)->get();
+        $html = view('frontend.videos.get_popular_videos',compact('popular_videos'))->render();
+        return response()->json(compact('html'));
     }
     public function show(Request $requst){
         // abort_if(!$requst,404);
@@ -71,7 +88,8 @@ class VideoController extends Controller
             TwitterCard::setTitle($video->title);
 
             $video->increment('views');
-            return view('frontend.videos.show',compact('video'));
+            $popular_videos = Video::orderBy('views','desc')->limit(10)->get();
+            return view('frontend.videos.show',compact('video','popular_videos'));
         }elseif($requst->tag){
             $tag = Tag::where('slug',$requst->tag)->first();
             $videos = $tag->videos()->latest()->active()->paginate('16');
